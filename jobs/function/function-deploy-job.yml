@@ -26,8 +26,9 @@ jobs:
                 az deployment sub create `
                 --name azfn.deploy `
                 --location ${{variables.AzureLocationShort}} `
-                --template-file "$(Pipeline.Workspace)/drop/bicep/functionapp.bicep" `
+                --template-file "$(Pipeline.Workspace)/drop/bicep/main.bicep" `
                 --parameters `
-                storageAccountName=${{variables.AzureLocationShort}} `
-                location=${{variables.ResourceGroupName}}
+                resourceGroupName=${{variables.ResourceGroupName}} `
+                resourceGroupLocation=${{variables.AzureLocationShort}} `
+                storageAccountName=${{variables.StorageAccountName}}
  

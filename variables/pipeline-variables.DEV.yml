@@ -1,0 +1,7 @@
+variables:
+  
+  AzureSubscriptionId: 'c7c83570-d895-4a41-95ba-5a2cc812457a'
+  AzureSubscriptionName: 'ServiceConnection'
+
+  DeploymentEnvironmentCode: 'D'
+  DeploymentEnvironmentName: 'Development'

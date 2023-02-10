@@ -1,0 +1,22 @@
+pool:
+  vmImage: windows-latest
+
+trigger: none
+
+pr: none
+
+name: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+
+stages:
+  - stage: Build
+    jobs:       
+    - template: 'jobs/build-job.yml'
+  
+  - stage: Development
+    dependsOn: Build
+    condition: succeeded('Build')
+    jobs:  
+    - template: 'jobs/function/function-deploy-job.yml'
+      parameters:
+        environmentName: Dev
+        deploymentIdentifier: $(deploymentIdentifier)

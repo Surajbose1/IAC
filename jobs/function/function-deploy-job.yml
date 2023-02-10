@@ -1,0 +1,33 @@
+parameters:
+- name: environmentName
+  type: string
+
+jobs:
+  - deployment: AzureFunction
+    displayName: Deploy Azure Function
+    environment: '${{ parameters.environmentName }}'
+    variables:
+    - template: '../../variables/function-variables.yml'
+    - template: '../../variables/pipeline-variables.${{ parameters.environmentName }}.yml'
+    - template: '../../variables/pipeline-variables.yml'
+    strategy: 
+      runOnce:
+        deploy:
+          steps:
+
+          - task: AzureCLI@2
+            displayName: 'Storage Account deployment'
+            inputs:
+              azureSubscription: ${{ variables.AzureSubscriptionName }}
+              scriptType: pscore
+              scriptLocation: inlineScript
+              inlineScript: |
+                az account set --subscription ${{variables.AzureSubscriptionId}}
+                az deployment sub create `
+                --name azfn.deploy `
+                --location ${{variables.AzureLocationShort}} `
+                --template-file "$(Pipeline.Workspace)/drop/bicep/functionapp.bicep" `
+                --parameters `
+                storageAccountName=${{variables.AzureLocationShort}} `
+                location=${{variables.ResourceGroupName}}
+ 

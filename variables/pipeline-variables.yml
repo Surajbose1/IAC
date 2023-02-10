@@ -1,9 +1,7 @@
 variables:
 
-  AzureLocationFull: 'Australia East'
   AzureLocationShort: 'australiaeast'
-  AzureLocationCode: 'AUE'
   ProjectName: 'Demo' 
 
 
-  AzureTags: '{\"Application\":\"$(ProjectName)\",\"CostCenter\":\"906103\",\"Environment\":\"$(DeploymentEnvironmentName)\",\"Function\":\"App\",\"Impact\":\"Low-impact\",\"DataClassification\":\"Public\",\"Owner\":\"IS\",\"PowerManagement\":\"24:7\",\"ProjectNumber\":\"11920142\",\"TaskCode\":\"AU-SD.99.99.00\",\"WorkloadType\":\"App\"}'
+  AzureTags: '{\"Application\":\"$(ProjectName)\",\"Environment\":\"$(DeploymentEnvironmentName)\",\"Function\":\"App\"}'

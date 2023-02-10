@@ -30,5 +30,6 @@ jobs:
                 --parameters `
                 resourceGroupName=${{variables.ResourceGroupName}} `
                 resourceGroupLocation=${{variables.AzureLocationShort}} `
-                storageAccountName=${{variables.StorageAccountName}}
+                storageAccountName=${{variables.StorageAccountName}} `
+                tags='${{variables.AzureTags}}'
  

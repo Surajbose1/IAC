@@ -6,6 +6,9 @@ param storageAccountName string = 'store${uniqueString(resourceGroup().id)}'
 @description('Location for all resources.')
 param location string = resourceGroup().location
 
+@description('The tags of the resources.')
+param tags object
+
 // var hostingPlanName = 'hpn-${resourceGroup().name}'
 
 /*
@@ -51,6 +54,7 @@ resource hostingPlan 'Microsoft.Web/serverfarms@2022-03-01' = {
 */
 resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' = {
   name: storageAccountName
+  tags: tags
   location: location
   kind: 'StorageV2'
   sku: {

@@ -1,4 +1,4 @@
 variables:
   Test: ''
   StorageAccountName: 'sbdaz20230205'
-  ResourceGroupName: 'dev-az-fn-rg'
+  ResourceGroupName: 'dev-au-fn-rg'

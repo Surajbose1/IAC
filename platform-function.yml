@@ -18,4 +18,4 @@ stages:
     jobs:  
     - template: 'jobs/function/function-deploy-job.yml'
       parameters:
-        environmentName: Dev
+        environmentName: DEV

@@ -19,4 +19,3 @@ stages:
     - template: 'jobs/function/function-deploy-job.yml'
       parameters:
         environmentName: Dev
-        deploymentIdentifier: $(deploymentIdentifier)

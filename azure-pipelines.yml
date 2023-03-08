@@ -15,5 +15,5 @@ steps:
 - script: echo ${{ parameters.serviceName }}
   displayName: 'Compile time'
 
-- script: echo $(parameters.serviceName)
+- script: echo $(serviceName)
   displayName: 'Run time'

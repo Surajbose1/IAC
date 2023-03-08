@@ -12,6 +12,8 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: echo ${{ parameters.serviceName }}
+- script: ${{ parameters.serviceName }}
   displayName: 'Compile time'
 
+- script: $(parameters.serviceName)
+  displayName: 'Run time'

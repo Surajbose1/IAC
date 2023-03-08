@@ -2,6 +2,10 @@ parameters:
   - name: serviceName
     type: string
 
+variables:
+- name: one
+  value: initialValue  
+
 trigger:
 - main
 
@@ -20,3 +24,7 @@ steps:
 
 - script: echo $(serviceName)
   displayName: 'Run time'
+
+- script: |
+    echo ${{ variables.one }}
+    echo $(one)

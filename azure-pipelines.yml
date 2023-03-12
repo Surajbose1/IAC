@@ -38,3 +38,4 @@ steps:
 - script: |
     echo ${{ parameters.Plan }}
     echo ${{ variables.planName }}
+    echo ${{ variables.planName }}

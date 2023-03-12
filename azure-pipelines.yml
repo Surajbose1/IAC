@@ -1,6 +1,12 @@
 parameters:
   - name: serviceName
     type: string
+    
+  - name: Plan
+    values:
+      - AppServicePlan
+      - Consumption
+
 
 variables:
 - name: one
@@ -28,3 +34,4 @@ steps:
 - script: |
     echo ${{ variables.one }}
     echo $(one)
+    echo ${{ parameters.Plan }}

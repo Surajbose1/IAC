@@ -1,14 +1,14 @@
 parameters:
   - name: serviceName
     type: string
+    displayName: Service Name
     
   - name: Plan
     type: string
     values:
       - AppServicePlan
       - Consumption
-      - Test
-
+    displayName: App Service Plan
 
 variables:
 - name: one

@@ -3,6 +3,7 @@ parameters:
     type: string
     
   - name: Plan
+    type: string
     values:
       - AppServicePlan
       - Consumption

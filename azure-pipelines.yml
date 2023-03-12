@@ -11,8 +11,10 @@ parameters:
     displayName: App Service Plan
 
 variables:
-- name: one
-  value: initialValue  
+  $[ if eq(parameters.serviceName, 'AppServicePlan') ]:
+    planName: app
+  $[ else ]:
+    planName: cons
 
 trigger:
 - main
@@ -34,6 +36,5 @@ steps:
   displayName: 'Run time'
 
 - script: |
-    echo ${{ variables.one }}
-    echo $(one)
     echo ${{ parameters.Plan }}
+    echo ${{ variables.planName }}

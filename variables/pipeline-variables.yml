@@ -1,6 +1,6 @@
 variables:
 
-  AzureLocationShort: 'australiaeast'
+  AzureLocationShort: 'australiasoutheast'
   ProjectName: 'Demo' 
 
 

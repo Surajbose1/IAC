@@ -39,5 +39,5 @@ jobs:
                 resourceGroupLocation=${{variables.AzureLocationShort}} `
                 storageAccountName=${{variables.StorageAccountName}} `
                 tags='${{variables.AzureTags}}' `
-                hostingPlanName={{parameters.hostingPlanName}}
+                hostingPlanName=${{parameters.hostingPlanName}}
  

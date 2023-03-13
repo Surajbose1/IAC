@@ -32,21 +32,17 @@ resource site 'Microsoft.Web/sites@2022-03-01' = {
           name: 'FUNCTIONS_EXTENSION_VERSION'
           value: '~4'
         }
-        {
-          name: 'AzureWebJobsStorage'
-          value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};AccountKey=${storageAccount.listKeys().keys[0].value}'
-        }
+        // {
+        //   name: 'AzureWebJobsStorage'
+        //   value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};AccountKey=${storageAccount.listKeys().keys[0].value}'
+        // }
       ]
     }
-    serverFarmId: hostingPlan.id
+    serverFarmId: resourceId(resourcegroupName, 'Microsoft.Web/serverFarms', hostingPlanName)
     clientAffinityEnabled: false
   }
 }
 
-resource hostingPlan 'Microsoft.Web/serverfarms@2022-03-01' existing = {
-  name: hostingPlanName
-  scope: resourceGroup(resourcegroupName)
-}
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2022-05-01' existing = {
   name: storageAccountName

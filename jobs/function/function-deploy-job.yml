@@ -2,6 +2,12 @@ parameters:
 - name: environmentName
   type: string
 
+- name: siteName
+  type: string  
+
+- name: hostingPlanName
+  type: string  
+
 jobs:
   - deployment: AzureFunction
     displayName: Deploy Azure Function
@@ -28,8 +34,10 @@ jobs:
                 --location ${{variables.AzureLocationShort}} `
                 --template-file "$(Pipeline.Workspace)/drop/bicep/main.bicep" `
                 --parameters `
+                siteName=${{parameters.siteName}} `
                 resourceGroupName=${{variables.ResourceGroupName}} `
                 resourceGroupLocation=${{variables.AzureLocationShort}} `
                 storageAccountName=${{variables.StorageAccountName}} `
-                tags='${{variables.AzureTags}}'
+                tags='${{variables.AzureTags}}' `
+                hostingPlanName={{parameters.hostingPlanName}}
  

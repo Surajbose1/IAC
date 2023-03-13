@@ -1,3 +1,22 @@
+parameters:
+  - name: serviceName
+    type: string
+    displayName: Service Name
+    
+  - name: planType
+    type: string
+    values:
+      - AppServicePlan
+      - Consumption
+    displayName: App Service Plan
+
+variables:
+- name: planName
+  ${{ if eq( parameters.planType, 'AppServicePlan' ) }}: 
+    value: 'ASP-devaufnrg-apps'
+  ${{ if eq( parameters.planType, 'Consumption' ) }}: 
+    value: 'ASP-devaufnrg-b633'    
+
 pool:
   vmImage: windows-latest
 
@@ -19,3 +38,5 @@ stages:
     - template: 'jobs/function/function-deploy-job.yml'
       parameters:
         environmentName: DEV
+        siteName: serviceName
+        hostingPlanName: planName

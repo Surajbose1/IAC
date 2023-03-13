@@ -1,3 +1,6 @@
+@description('The name of you Web Site.')
+param siteName string
+
 @description('Resource Group name')
 param resourceGroupName string
 
@@ -9,6 +12,9 @@ param storageAccountName string
 
 @description('The tags of the resources.')
 param tags object
+
+@description('The name of hosting plan.')
+param hostingPlanName string
 
 targetScope = 'subscription'
 
@@ -22,9 +28,11 @@ module azfunction 'function/functionapp.bicep' = {
   name: 'az-fn-app'
   scope: resourceGroup
   params: {
-    location: resourceGroupLocation
-    // siteName: ''
-    tags: tags
+    siteName: siteName
     storageAccountName: storageAccountName
+    location: resourceGroupLocation
+    resourcegroupName: resourceGroupName
+    tags: tags
+    hostingPlanName: hostingPlanName   
   }
 }

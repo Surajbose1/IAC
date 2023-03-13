@@ -16,32 +16,33 @@ param tags object
 @description('The name of hosting plan.')
 param hostingPlanName string
 
-// resource site 'Microsoft.Web/sites@2022-03-01' = {
-//   name: siteName
-//   kind: 'functionapp'
-//   tags: tags
-//   location: location
-//   properties: {
-//     siteConfig: {
-//       appSettings: [
-//         {
-//           name: 'FUNCTIONS_WORKER_RUNTIME'
-//           value: 'dotnet'
-//         }
-//         {
-//           name: 'FUNCTIONS_EXTENSION_VERSION'
-//           value: '~4'
-//         }
-//         // {
-//         //   name: 'AzureWebJobsStorage'
-//         //   value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};AccountKey=${storageAccount.listKeys().keys[0].value}'
-//         // }
-//       ]
-//     }
-//     serverFarmId: hostingPlan.id
-//     clientAffinityEnabled: false
-//   }
-// }
+resource site 'Microsoft.Web/sites@2022-03-01' = {
+  name: siteName
+  kind: 'functionapp'
+  tags: tags
+  location: location
+  dependsOn: [hostingPlan]
+  properties: {
+    siteConfig: {
+      appSettings: [
+        {
+          name: 'FUNCTIONS_WORKER_RUNTIME'
+          value: 'dotnet'
+        }
+        {
+          name: 'FUNCTIONS_EXTENSION_VERSION'
+          value: '~4'
+        }
+        {
+          name: 'AzureWebJobsStorage'
+          value: 'DefaultEndpointsProtocol=https;AccountName=${storageAccountName};AccountKey=${storageAccount.listKeys().keys[0].value}'
+        }
+      ]
+    }
+    serverFarmId: hostingPlan.id
+    clientAffinityEnabled: false
+  }
+}
 
 resource hostingPlan 'Microsoft.Web/serverfarms@2022-03-01' existing = {
   name: hostingPlanName

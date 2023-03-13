@@ -22,7 +22,7 @@ jobs:
           steps:
 
           - task: AzureCLI@2
-            displayName: 'Storage Account deployment'
+            displayName: 'Deploy Azure Function'
             inputs:
               azureSubscription: ${{ variables.AzureSubscriptionName }}
               scriptType: pscore

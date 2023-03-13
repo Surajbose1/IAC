@@ -5,7 +5,7 @@ param siteName string
 param storageAccountName string
 
 @description('Location for all resources.')
-param location string = resourceGroup().location
+param location string
 
 @description('The name of storage account.')
 param resourcegroupName string

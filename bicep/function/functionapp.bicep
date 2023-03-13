@@ -18,7 +18,7 @@ param hostingPlanName string
 
 resource site 'Microsoft.Web/sites@2022-03-01' = {
   name: siteName
-  kind: 'functionapp,linux'
+  kind: 'functionapp'
   tags: tags
   location: location
   properties: {

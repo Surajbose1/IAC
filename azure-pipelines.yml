@@ -10,12 +10,7 @@ parameters:
       - Consumption
     displayName: App Service Plan
 
-variables:
-    $[ if eq(parameters.serviceName, 'AppServicePlan') ]:
-      planName: app
-    $[ else ]:
-      planName: cons
-
+    
 trigger:
 - main
 
@@ -34,6 +29,14 @@ steps:
 
 - script: echo $(serviceName)
   displayName: 'Run time'
+
+- bash: |
+    echo "##vso[task.setvariable variable=planName]apps"
+    condition: eq('${{parameters.Plan}}', 'AppServicePlan')
+
+    echo "##vso[task.setvariable variable=planName]cons"
+    condition: eq('${{parameters.Plan}}', 'Consumption')
+    
 
 - script: |
     echo ${{ parameters.Plan }}

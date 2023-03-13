@@ -34,14 +34,8 @@ steps:
   displayName: Set new variable value
 
 - script: echo $(serviceName)
-  displayName: 'Run time'
-
-- bash: |
-    echo "##vso[task.setvariable variable=planName]cons"
-    condition: eq( ${{parameters.Plan}}, 'Consumption')
-   
+  displayName: 'Run time' 
 
 - script: |
     echo ${{ parameters.Plan }}
-    echo ${{ variables.planName }}
     echo $(myconditionalvariable)

@@ -39,4 +39,4 @@ stages:
       parameters:
         environmentName: DEV
         siteName: ${{ parameters.serviceName }}
-        hostingPlanName: ${{ parameters.planName }}
+        hostingPlanName: ${{ variables.planName }}

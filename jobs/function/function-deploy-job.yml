@@ -30,7 +30,7 @@ jobs:
               inlineScript: |
                 az account set --subscription ${{variables.AzureSubscriptionId}}
                 az deployment sub create `
-                --name azfn.deploy `
+                --name azfn.deploy.v1 `
                 --location ${{variables.AzureLocationShort}} `
                 --template-file "$(Pipeline.Workspace)/drop/bicep/main.bicep" `
                 --parameters `

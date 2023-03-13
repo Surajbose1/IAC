@@ -38,5 +38,5 @@ stages:
     - template: 'jobs/function/function-deploy-job.yml'
       parameters:
         environmentName: DEV
-        siteName: serviceName
-        hostingPlanName: planName
+        siteName: ${{ parameters.serviceName }}
+        hostingPlanName: ${{ parameters.planName }}

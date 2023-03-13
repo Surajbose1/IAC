@@ -12,32 +12,37 @@ jobs:
   - deployment: AzureFunction
     displayName: Deploy Azure Function
     environment: '${{ parameters.environmentName }}'
-    variables:
-    - template: '../../variables/function-variables.yml'
-    - template: '../../variables/pipeline-variables.${{ parameters.environmentName }}.yml'
-    - template: '../../variables/pipeline-variables.yml'
+    # variables:
+    # - template: '../../variables/function-variables.yml'
+    # - template: '../../variables/pipeline-variables.${{ parameters.environmentName }}.yml'
+    # - template: '../../variables/pipeline-variables.yml'
     strategy: 
       runOnce:
         deploy:
           steps:
 
-          - task: AzureCLI@2
-            displayName: 'Storage Account deployment'
-            inputs:
-              azureSubscription: ${{ variables.AzureSubscriptionName }}
-              scriptType: pscore
-              scriptLocation: inlineScript
-              inlineScript: |
-                az account set --subscription ${{variables.AzureSubscriptionId}}
-                az deployment sub create `
-                --name azfn.deploy `
-                --location ${{variables.AzureLocationShort}} `
-                --template-file "$(Pipeline.Workspace)/drop/bicep/main.bicep" `
-                --parameters `
-                siteName=${{parameters.siteName}} `
-                resourceGroupName=${{variables.ResourceGroupName}} `
-                resourceGroupLocation=${{variables.AzureLocationShort}} `
-                storageAccountName=${{variables.StorageAccountName}} `
-                tags='${{variables.AzureTags}}' `
-                hostingPlanName={{parameters.hostingPlanName}}
+            - script: |
+                echo ${{ parameters.environmentName }}
+                echo ${{ parameters.siteName }}
+                echo ${{ parameters.hostingPlanName }}
+
+          # - task: AzureCLI@2
+          #   displayName: 'Storage Account deployment'
+          #   inputs:
+          #     azureSubscription: ${{ variables.AzureSubscriptionName }}
+          #     scriptType: pscore
+          #     scriptLocation: inlineScript
+          #     inlineScript: |
+          #       az account set --subscription ${{variables.AzureSubscriptionId}}
+          #       az deployment sub create `
+          #       --name azfn.deploy `
+          #       --location ${{variables.AzureLocationShort}} `
+          #       --template-file "$(Pipeline.Workspace)/drop/bicep/main.bicep" `
+          #       --parameters `
+          #       siteName=${{parameters.siteName}} `
+          #       resourceGroupName=${{variables.ResourceGroupName}} `
+          #       resourceGroupLocation=${{variables.AzureLocationShort}} `
+          #       storageAccountName=${{variables.StorageAccountName}} `
+          #       tags='${{variables.AzureTags}}' `
+          #       hostingPlanName={{parameters.hostingPlanName}}
  

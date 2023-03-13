@@ -10,9 +10,12 @@ parameters:
       - Consumption
     displayName: App Service Plan
 
-variables: 
-    - name: planName
-      value: apps
+variables:
+- name: myconditionalvariable
+  ${{ if eq( parameters.Plan, 'AppServicePlan' ) }}: 
+    value: apps
+  ${{ if eq( parameters.Plan, 'Consumption' ) }}: 
+    value: cons
     
 trigger:
 - main
@@ -41,4 +44,4 @@ steps:
 - script: |
     echo ${{ parameters.Plan }}
     echo ${{ variables.planName }}
-    echo $(planName)
+    echo $(myconditionalvariable)

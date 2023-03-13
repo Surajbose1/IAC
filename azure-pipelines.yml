@@ -10,6 +10,9 @@ parameters:
       - Consumption
     displayName: App Service Plan
 
+variables: 
+    - name: planName
+      value: apps
     
 trigger:
 - main
@@ -31,14 +34,11 @@ steps:
   displayName: 'Run time'
 
 - bash: |
-    echo "##vso[task.setvariable variable=planName]apps"
-    condition: eq('${{parameters.Plan}}', 'AppServicePlan')
-
     echo "##vso[task.setvariable variable=planName]cons"
     condition: eq('${{parameters.Plan}}', 'Consumption')
-    
+   
 
 - script: |
     echo ${{ parameters.Plan }}
     echo ${{ variables.planName }}
-    echo ${{ variables.planName }}
+    echo $(planName)

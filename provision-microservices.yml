@@ -44,7 +44,7 @@ stages:
     variables:
     - template: 'variables/pipeline-variables.DEV.yml'
       parameters:
-        serviceName: serviceName             
+        serviceName: ${{ parameters.serviceName }}
 
   - stage: Development_US
     dependsOn: Build
@@ -59,7 +59,7 @@ stages:
     variables:
     - template: 'variables/pipeline-variables.DEV.yml'
       parameters:
-        serviceName: serviceName
+        serviceName: ${{ parameters.serviceName }}
 
   - stage: Production_AU
     dependsOn: Development_AU

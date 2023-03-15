@@ -1,3 +1,7 @@
+parameters:
+- name: serviceName
+  type: string
+
 variables:
   
   AzureSubscriptionId: 'c7c83570-d895-4a41-95ba-5a2cc812457a'
@@ -13,4 +17,5 @@ variables:
   StorageAccountName: 'devaufnrg8271'
   ResourceGroupName: 'dev-au-fn-rg-001'
 
-  
+  AUFunctionName: 'staging-au-${{ parameters.serviceName }}-test'
+  USFunctionName: 'staging-us-${{ parameters.serviceName }}-test'

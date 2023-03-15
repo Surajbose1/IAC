@@ -14,6 +14,8 @@ jobs:
     environment: '${{ parameters.environmentName }}'
     variables:
     - template: '../../variables/pipeline-variables.${{ parameters.environmentName }}.yml'
+      parameters:
+        serviceName: siteName
     strategy: 
       runOnce:
         deploy:

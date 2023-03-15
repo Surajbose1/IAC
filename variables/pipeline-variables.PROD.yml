@@ -1,16 +1,20 @@
+parameters:
+- name: serviceName
+  type: string
+
 variables:
   
-  AzureSubscriptionId: ''
+  AzureSubscriptionId: 'c7c83570-d895-4a41-95ba-5a2cc812457a'
   AzureSubscriptionName: 'ServiceConnection'
 
-  DeploymentEnvironmentCode: ''
-  DeploymentEnvironmentName: ''
+  DeploymentEnvironmentCode: 'D'
+  DeploymentEnvironmentName: 'Development'
 
-  AzureLocationShort: ''
-  ProjectName: '' 
-  AzureTags: ''
+  AzureLocationShort: 'australiasoutheast'
+  ProjectName: 'Demo' 
+  AzureTags: '{\"Application\":\"$(ProjectName)\",\"Environment\":\"$(DeploymentEnvironmentName)\",\"Function\":\"App\"}'
 
-  StorageAccountName: ''
-  ResourceGroupName: ''
+  StorageAccountName: 'devaufnrg8271'
+  ResourceGroupName: 'dev-au-fn-rg-001'
 
-  
+  AUFunctionName: 'prod-au-${{ parameters.serviceName }}-test'

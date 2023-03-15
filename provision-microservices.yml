@@ -31,12 +31,35 @@ stages:
     jobs:       
     - template: 'jobs/build-job.yml'
   
-  - stage: Development
+  - stage: Development-AU
     dependsOn: Build
     condition: succeeded('Build')
+    displayName: 'Staging AU'
     jobs:  
     - template: 'jobs/function/function-deploy-job.yml'
       parameters:
         environmentName: DEV
         siteName: ${{ parameters.serviceName }}
         hostingPlanName: ${{ variables.planName }}
+
+  - stage: Development-US
+    dependsOn: Development-AU
+    condition: succeeded('Development-AU')
+    displayName: 'Staging US'
+    jobs:  
+    - template: 'jobs/function/function-deploy-job.yml'
+      parameters:
+        environmentName: DEV
+        siteName: ${{ parameters.serviceName }}
+        hostingPlanName: ${{ variables.planName }}
+
+  - stage: Production-AU
+    dependsOn: Development-US
+    condition: succeeded('Development-US')
+    displayName: 'Prod AU'
+    jobs:  
+    - template: 'jobs/function/function-deploy-job.yml'
+      parameters:
+        environmentName: PROD
+        siteName: ${{ parameters.serviceName }}
+        hostingPlanName: ${{ variables.planName }}           

@@ -1,0 +1,16 @@
+variables:
+  
+  AzureSubscriptionId: ''
+  AzureSubscriptionName: 'ServiceConnection'
+
+  DeploymentEnvironmentCode: ''
+  DeploymentEnvironmentName: ''
+
+  AzureLocationShort: ''
+  ProjectName: '' 
+  AzureTags: ''
+
+  StorageAccountName: ''
+  ResourceGroupName: ''
+
+  

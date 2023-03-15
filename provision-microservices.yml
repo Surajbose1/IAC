@@ -31,7 +31,7 @@ stages:
     jobs:       
     - template: 'jobs/build-job.yml'
   
-  - stage: Development-AU
+  - stage: Development_AU
     dependsOn: Build
     condition: succeeded('Build')
     displayName: 'Staging AU'
@@ -42,9 +42,9 @@ stages:
         siteName: ${{ variables.AUFunctionName }}
         hostingPlanName: ${{ variables.planName }}
 
-  - stage: Development-US
-    dependsOn: Development-AU
-    condition: succeeded('Development-AU')
+  - stage: Development_US
+    dependsOn: Development_AU
+    condition: succeeded('Development_AU')
     displayName: 'Staging US'
     jobs:  
     - template: 'jobs/function/function-deploy-job.yml'
@@ -53,9 +53,9 @@ stages:
         siteName: ${{ variables.USFunctionName  }}
         hostingPlanName: ${{ variables.planName }}
 
-  - stage: Production-AU
-    dependsOn: Development-US
-    condition: succeeded('Development-US')
+  - stage: Production_AU
+    dependsOn: Development_US
+    condition: succeeded('Development_US')
     displayName: 'Prod AU'
     jobs:  
     - template: 'jobs/function/function-deploy-job.yml'

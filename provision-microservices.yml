@@ -26,58 +26,23 @@ pr: none
 
 name: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
-stages:
+stages: 
   - stage: Build
     jobs:       
     - template: 'jobs/build-job.yml'
-  
+
   - stage: Development_AU
     dependsOn: Build
     condition: succeeded('Build')
     displayName: 'Staging AU'
+    variables:
+    - template: 'variables/pipeline-variables.DEV.yml'
+      parameters:
+        serviceName: ${{ parameters.serviceName }}    
+
     jobs: 
     - job: 
       steps: 
         - script: |
-           echo ${{ variables.AUFunctionName }}    
-    variables:
-    - template: 'variables/pipeline-variables.DEV.yml'
-      parameters:
-        serviceName: ${{ parameters.serviceName }}          
-
-  - stage: Development_US
-    dependsOn: Build
-    condition: succeeded('Build')
-    displayName: 'Staging US'
-    jobs:  
-    - template: 'jobs/function/function-deploy-job.yml'
-      parameters:
-        environmentName: DEV
-        siteName: ${{ variables.USFunctionName  }}
-        hostingPlanName: ${{ variables.planName }}
-    variables:
-    - template: 'variables/pipeline-variables.DEV.yml'
-      parameters:
-        serviceName: ${{ parameters.serviceName }}
-
-  - stage: Production_AU
-    dependsOn: Development_AU
-    condition: succeeded('Development_AU')
-    displayName: 'Prod AU'
-    jobs:  
-    - template: 'jobs/function/function-deploy-job.yml'
-      parameters:
-        environmentName: PROD
-        siteName: ${{ variables.AUFunctionName }}
-        hostingPlanName: ${{ variables.planName }}
-
-  - stage: Production_US
-    dependsOn: Development_US
-    condition: succeeded('Development_US')
-    displayName: 'Prod US'
-    jobs:  
-    - template: 'jobs/function/function-deploy-job.yml'
-      parameters:
-        environmentName: PROD
-        siteName: ${{ variables.USFunctionName }}
-        hostingPlanName: ${{ variables.planName }}        
+           echo 'Hello World'
+           echo ${{ variables.AUFunctionName }}     

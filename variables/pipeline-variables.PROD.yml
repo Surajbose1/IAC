@@ -18,3 +18,4 @@ variables:
   ResourceGroupName: 'dev-au-fn-rg-001'
 
   AUFunctionName: 'prod-au-${{ parameters.serviceName }}-test'
+  USFunctionName: 'prod-us-${{ parameters.serviceName }}-test'

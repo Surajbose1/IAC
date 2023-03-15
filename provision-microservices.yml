@@ -41,6 +41,10 @@ stages:
         environmentName: DEV
         siteName: ${{ variables.AUFunctionName }}
         hostingPlanName: ${{ variables.planName }}
+    variables:
+      - template: 'variables/pipeline-variables.DEV.yml'
+        parameters:
+          serviceName: serviceName
 
   - stage: Development_US
     dependsOn: Build
@@ -52,6 +56,10 @@ stages:
         environmentName: DEV
         siteName: ${{ variables.USFunctionName  }}
         hostingPlanName: ${{ variables.planName }}
+    variables:
+      - template: 'variables/pipeline-variables.DEV.yml'
+        parameters:
+          serviceName: serviceName
 
   - stage: Production_AU
     dependsOn: Development_AU

@@ -1,7 +1,0 @@
-variables:
-
-  AzureLocationShort: 'australiasoutheast'
-  ProjectName: 'Demo' 
-
-
-  AzureTags: '{\"Application\":\"$(ProjectName)\",\"Environment\":\"$(DeploymentEnvironmentName)\",\"Function\":\"App\"}'

@@ -1,0 +1,42 @@
+parameters:
+  - name: serviceName
+    type: string
+    displayName: Service Name
+    
+  - name: planType
+    type: string
+    values:
+      - AppServicePlan
+      - Consumption
+    displayName: App Service Plan
+
+variables:
+- name: planName
+  ${{ if eq( parameters.planType, 'AppServicePlan' ) }}: 
+    value: 'ASP-devaufnrg-apps'
+  ${{ if eq( parameters.planType, 'Consumption' ) }}: 
+    value: 'ASP-devaufnrg-b633'    
+
+pool:
+  vmImage: windows-latest
+
+trigger: none
+
+pr: none
+
+name: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
+
+stages:
+  - stage: Build
+    jobs:       
+    - template: 'jobs/build-job.yml'
+  
+  - stage: Development
+    dependsOn: Build
+    condition: succeeded('Build')
+    jobs:  
+    - template: 'jobs/function/function-deploy-job.yml'
+      parameters:
+        environmentName: DEV
+        siteName: ${{ parameters.serviceName }}
+        hostingPlanName: ${{ variables.planName }}

@@ -5,3 +5,12 @@ variables:
 
   DeploymentEnvironmentCode: 'D'
   DeploymentEnvironmentName: 'Development'
+
+  AzureLocationShort: 'australiasoutheast'
+  ProjectName: 'Demo' 
+  AzureTags: '{\"Application\":\"$(ProjectName)\",\"Environment\":\"$(DeploymentEnvironmentName)\",\"Function\":\"App\"}'
+
+  StorageAccountName: 'devaufnrg8271'
+  ResourceGroupName: 'dev-au-fn-rg-001'
+
+  

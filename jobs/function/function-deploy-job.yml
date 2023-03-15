@@ -13,9 +13,7 @@ jobs:
     displayName: Deploy Azure Function
     environment: '${{ parameters.environmentName }}'
     variables:
-    - template: '../../variables/function-variables.yml'
     - template: '../../variables/pipeline-variables.${{ parameters.environmentName }}.yml'
-    - template: '../../variables/pipeline-variables.yml'
     strategy: 
       runOnce:
         deploy:

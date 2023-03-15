@@ -36,15 +36,16 @@ stages:
     condition: succeeded('Build')
     displayName: 'Staging AU'
     jobs: 
+    variables:
+    - template: 'variables/pipeline-variables.DEV.yml'
+      parameters:
+        serviceName: ${{ parameters.serviceName }}    
     - template: 'jobs/function/function-deploy-job.yml'
       parameters:
         environmentName: DEV
         siteName: ${{ variables.AUFunctionName }}
         hostingPlanName: ${{ variables.planName }}
-    variables:
-    - template: 'variables/pipeline-variables.DEV.yml'
-      parameters:
-        serviceName: ${{ parameters.serviceName }}
+
 
   - stage: Development_US
     dependsOn: Build

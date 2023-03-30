@@ -19,3 +19,6 @@ variables:
 
   AUFunctionName: 'staging-au-${{ parameters.serviceName }}-test'
   USFunctionName: 'staging-us-${{ parameters.serviceName }}-test'
+
+  Test1: 'ABC'
+  Test2: 'XYZ'

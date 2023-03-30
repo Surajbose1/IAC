@@ -27,10 +27,10 @@ jobs:
           - script: echo "Determine plan"
           - ${{ if eq(parameters.planType, 'AppServicePlan') }}:
             - bash: |
-                echo "##vso[task.setvariable variable=myVar;]foo"
+                echo "##vso[task.setvariable variable=myVar;]$(Test1)"
           - ${{ if eq(parameters.planType, 'Consumption') }}:
             - bash: |
-                echo "##vso[task.setvariable variable=myVar;]bar"
+                echo "##vso[task.setvariable variable=myVar;]$(Test2)"
           - script: |
               echo $(myVar) 
 

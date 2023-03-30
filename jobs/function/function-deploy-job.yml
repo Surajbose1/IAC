@@ -8,6 +8,9 @@ parameters:
 - name: hostingPlanName
   type: string  
 
+- name: planType
+  type: string
+
 jobs:
   - deployment: AzureFunction
     displayName: Deploy Azure Function
@@ -22,7 +25,13 @@ jobs:
           steps:
 
           - script: echo "Determine plan"
-          - ${{ if eq(parameters.environmentName, 'QA') }}:
-            - script: echo "Hello World"
+          - ${{ if eq(parameters.planType, 'AppServicePlan') }}:
+            - bash: |
+                echo "##vso[task.setvariable variable=myVar;]foo"
+          - ${{ if eq(parameters.planType, 'Consumption') }}:
+            - bash: |
+                echo "##vso[task.setvariable variable=myVar;]bar"
+          - script: |
+              echo $(myVar) 
 
  

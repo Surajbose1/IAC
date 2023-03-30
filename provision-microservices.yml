@@ -43,3 +43,4 @@ stages:
         environmentName: DEV
         siteName: ${{ variables.AUFunctionName  }}
         hostingPlanName: ${{ variables.planName }}
+        planType: {{ parameters.planType }}

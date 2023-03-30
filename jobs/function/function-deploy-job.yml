@@ -22,7 +22,7 @@ jobs:
           steps:
 
           - script: echo "Determine plan"
-          - ${{ if eq(parameters.environmentName, 'DEV') }}:
+          - ${{ if eq(parameters.environmentName, 'QA') }}:
             - script: echo "Hello World"
 
  

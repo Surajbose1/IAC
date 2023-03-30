@@ -21,7 +21,11 @@ jobs:
         deploy:
           steps:
 
+          - script: |
+              echo "Hello World"
+
           - task: AzureCLI@2
+            condition: eq( ${{parameters.environmentName}}, 'QA')
             displayName: 'Deploy Azure Function'
             inputs:
               azureSubscription: ${{ variables.AzureSubscriptionName }}

@@ -32,8 +32,6 @@ stages:
     - template: 'jobs/build-job.yml'
 
   - stage: Development_AU
-    dependsOn: Build
-    condition: succeeded('Build')
     displayName: 'Staging AU'
     variables:
     - template: 'variables/pipeline-variables.DEV.yml'

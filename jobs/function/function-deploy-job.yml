@@ -25,24 +25,4 @@ jobs:
           - ${{ if eq(parameters.environmentName, 'DEV') }}:
             - script: echo "Hello World"
 
-          - task: AzureCLI@2
-            condition: eq( ${{parameters.environmentName}}, 'QA')
-            displayName: 'Deploy Azure Function'
-            inputs:
-              azureSubscription: ${{ variables.AzureSubscriptionName }}
-              scriptType: pscore
-              scriptLocation: inlineScript
-              inlineScript: |
-                az account set --subscription ${{variables.AzureSubscriptionId}}
-                az deployment sub create `
-                --name azfn.deploy.v1 `
-                --location ${{variables.AzureLocationShort}} `
-                --template-file "$(Pipeline.Workspace)/drop/bicep/main.bicep" `
-                --parameters `
-                siteName=${{parameters.siteName}} `
-                resourceGroupName=${{variables.ResourceGroupName}} `
-                resourceGroupLocation=${{variables.AzureLocationShort}} `
-                storageAccountName=${{variables.StorageAccountName}} `
-                tags='${{variables.AzureTags}}' `
-                hostingPlanName=${{parameters.hostingPlanName}}
  

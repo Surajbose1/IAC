@@ -24,12 +24,12 @@ jobs:
           - script: echo "Determine plan"
           - ${{ if eq(parameters.planType, 'AppServicePlan') }}:
             - bash: |
-                echo "##vso[task.setvariable variable=myVar;]$(AppServicePlanName)"
+                echo "##vso[task.setvariable variable=functionPlanName;]$(AppServicePlanName)"
           - ${{ if eq(parameters.planType, 'Consumption') }}:
             - bash: |
-                echo "##vso[task.setvariable variable=myVar;]$(ConsumptionPlanName)"
+                echo "##vso[task.setvariable variable=functionPlanName;]$(ConsumptionPlanName)"
           - script: |
-              echo $(ConsumptionPlanName) 
+              echo $(functionPlanName) 
 
           - task: AzureCLI@2
             displayName: 'Deploy Azure Function'
@@ -49,7 +49,7 @@ jobs:
                 resourceGroupLocation=${{variables.AzureLocationShort}} `
                 storageAccountName=${{variables.StorageAccountName}} `
                 tags='${{variables.AzureTags}}' `
-                hostingPlanName=${{variables.ConsumptionPlanName}}
+                hostingPlanName=${{variables.functionPlanName}}
             
 
  

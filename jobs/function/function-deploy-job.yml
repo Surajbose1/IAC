@@ -21,7 +21,7 @@ jobs:
         deploy:
           steps:
 
-          - script: 'Determine plan'
+          - script: echo "Determine plan"
           - ${{ if eq(parameters.environmentName, 'DEV') }}:
             - script: echo "Hello World"
 

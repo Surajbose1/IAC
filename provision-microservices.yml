@@ -10,13 +10,6 @@ parameters:
       - Consumption
     displayName: App Service Plan
 
-variables:
-- name: planName
-  ${{ if eq( parameters.planType, 'AppServicePlan' ) }}: 
-    value: 'ASP-devaufnrg-apps'
-  ${{ if eq( parameters.planType, 'Consumption' ) }}: 
-    value: 'ASP-devaufnrg-b633'    
-
 pool:
   vmImage: windows-latest
 
@@ -43,4 +36,11 @@ stages:
         environmentName: DEV
         siteName: ${{ variables.AUFunctionName  }}
         planType: ${{ parameters.planType }}
-        regionName: UK
+        regionName: AU
+
+    - template: 'jobs/function/function-deploy-job.yml'
+      parameters:
+        environmentName: DEV
+        siteName: ${{ variables.USFunctionName  }}
+        planType: ${{ parameters.planType }}
+        regionName: US

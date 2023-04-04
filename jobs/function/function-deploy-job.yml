@@ -23,20 +23,26 @@ jobs:
       runOnce:
         deploy:
           steps:
-                        
+
           - ${{ if and(eq(parameters.planType, 'AppServicePlan'), eq(parameters.regionName, 'AU')) }}:
             - bash: |
-                echo "AU"
                 echo "##vso[task.setvariable variable=functionPlanName;]$(AppServicePlanName)"
-              displayName: Step 4
-          - ${{ if and(eq(parameters.planType, 'Consumption'), eq(parameters.regionName, 'UK')) }}:
+              displayName: App Service Plan (AU region)
+          - ${{ if and(eq(parameters.planType, 'Consumption'), eq(parameters.regionName, 'AU')) }}:
             - bash: |
-                echo "UK"
                 echo "##vso[task.setvariable variable=functionPlanName;]$(ConsumptionPlanName)"
-              displayName: Step 5
+              displayName: Consumption Plan (AU region)
+          - ${{ if and(eq(parameters.planType, 'AppServicePlan'), eq(parameters.regionName, 'US')) }}:
+            - bash: |
+                echo "##vso[task.setvariable variable=functionPlanName;]$(AppServicePlanName)"
+              displayName: Check App Service Plan (US region)
+          - ${{ if and(eq(parameters.planType, 'Consumption'), eq(parameters.regionName, 'US')) }}:
+            - bash: |
+                echo "##vso[task.setvariable variable=functionPlanName;]$(ConsumptionPlanName)"
+              displayName: Check App Service Plan (US region)
           - script: |
               echo $(functionPlanName) 
-            displayName: Step 6
+            displayName: Display Plan name
 
           # - task: AzureCLI@2
           #   displayName: 'Deploy Azure Function'

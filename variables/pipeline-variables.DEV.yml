@@ -21,4 +21,4 @@ variables:
   USFunctionName: 'staging-us-${{ parameters.serviceName }}-test'
 
   AppServicePlanName: 'staging-app-plan'
-  ConsumptionPlanName: 'staging-cons-plan'
+  ConsumptionPlanName: 'ASP-devaufnrg001-ae3a'

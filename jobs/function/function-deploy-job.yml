@@ -28,6 +28,8 @@ jobs:
               echo "Determine plan"
               echo ${{ parameters.regionName }}
               echo ${{ parameters.planType }}
+          
+          - bash:
               echo "##vso[task.setvariable variable=test;]${{ parameters.regionName }}"
 
           - script: |

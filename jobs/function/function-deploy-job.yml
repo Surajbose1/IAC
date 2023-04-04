@@ -23,21 +23,7 @@ jobs:
       runOnce:
         deploy:
           steps:
-
-          - script: |
-              echo "Determine plan"
-              echo ${{ parameters.regionName }}
-              echo ${{ parameters.planType }}
-            displayName: Step 1
-          
-          - bash:
-              echo "##vso[task.setvariable variable=test;]${{ parameters.regionName }}"
-            displayName: Step 2
-
-          - script: |
-              echo $(test)
-            displayName: Step 3
-              
+                        
           - ${{ if and(eq(parameters.planType, 'AppServicePlan'), eq(parameters.regionName, 'AU')) }}:
             - bash: |
                 echo "AU"

@@ -43,7 +43,7 @@ jobs:
                 echo "AU"
                 echo "##vso[task.setvariable variable=functionPlanName;]$(AppServicePlanName)"
               displayName: Step 4
-          - ${{ if eq(parameters.planType, 'Consumption') }}:
+          - ${{ if and(eq(parameters.planType, 'Consumption'), eq(parameters.regionName, 'UK')) }}:
             - bash: |
                 echo "UK"
                 echo "##vso[task.setvariable variable=functionPlanName;]$(ConsumptionPlanName)"

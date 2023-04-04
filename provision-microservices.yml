@@ -43,4 +43,4 @@ stages:
         environmentName: DEV
         siteName: ${{ variables.AUFunctionName  }}
         planType: ${{ parameters.planType }}
-        regionName: AU
+        regionName: UK

@@ -24,7 +24,9 @@ jobs:
         deploy:
           steps:
 
-          - script: echo "Determine plan"
+          - script: |
+              echo "Determine plan"
+              echo $(parameters.region)
           - ${{ if and(eq(parameters.planType, 'AppServicePlan'), eq(parameters.region, 'AU')) }}:
             - bash: |
                 echo "AU"

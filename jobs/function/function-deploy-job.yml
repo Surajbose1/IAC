@@ -28,23 +28,29 @@ jobs:
               echo "Determine plan"
               echo ${{ parameters.regionName }}
               echo ${{ parameters.planType }}
+            displayName: Step 1
           
           - bash:
               echo "##vso[task.setvariable variable=test;]${{ parameters.regionName }}"
+            displayName: Step 2
 
           - script: |
-              echo $(test)              
+              echo $(test)
+            displayName: Step 3
               
           - ${{ if and(eq(parameters.planType, 'AppServicePlan'), eq(parameters.regionName, 'AU')) }}:
             - bash: |
                 echo "AU"
                 echo "##vso[task.setvariable variable=functionPlanName;]$(AppServicePlanName)"
+              displayName: Step 4
           - ${{ if eq(parameters.planType, 'Consumption') }}:
             - bash: |
                 echo "UK"
                 echo "##vso[task.setvariable variable=functionPlanName;]$(ConsumptionPlanName)"
+              displayName: Step 5
           - script: |
               echo $(functionPlanName) 
+            displayName: Step 6
 
           # - task: AzureCLI@2
           #   displayName: 'Deploy Azure Function'

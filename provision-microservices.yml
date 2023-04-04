@@ -38,9 +38,16 @@ stages:
         planType: ${{ parameters.planType }}
         regionName: AU
 
+  - stage: Development_US
+    displayName: 'Staging US'
+    variables:
+    - template: 'variables/pipeline-variables.DEV.yml'
+      parameters:
+        serviceName: ${{ parameters.serviceName }}
+    jobs:  
     - template: 'jobs/function/function-deploy-job.yml'
       parameters:
         environmentName: DEV
         siteName: ${{ variables.USFunctionName  }}
         planType: ${{ parameters.planType }}
-        regionName: US
+        regionName: US       

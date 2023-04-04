@@ -27,9 +27,9 @@ jobs:
           - script: |
               echo "Determine plan"
               echo ${{ parameters.regionName }}
-              echo  $(parameters.regionName)
+              echo $[parameters.regionName]
               echo ${{ parameters.planType }}
-              echo  $(parameters.planType)
+              echo $[parameters.planType]
               
           - ${{ if and(eq(parameters.planType, 'AppServicePlan'), eq(parameters.regionName, 'AU')) }}:
             - bash: |

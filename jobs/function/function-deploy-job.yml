@@ -8,7 +8,7 @@ parameters:
 - name: planType
   type: string
 
-- name: region
+- name: regionName
   type: string  
 
 jobs:
@@ -26,8 +26,9 @@ jobs:
 
           - script: |
               echo "Determine plan"
-              echo $(parameters.region)
-          - ${{ if and(eq(parameters.planType, 'AppServicePlan'), eq(parameters.region, 'AU')) }}:
+              echo ${{ parameters.regionName }}
+              echo  $(parameters.regionName)
+          - ${{ if and(eq(parameters.planType, 'AppServicePlan'), eq(parameters.regionName, 'AU')) }}:
             - bash: |
                 echo "AU"
                 echo "##vso[task.setvariable variable=functionPlanName;]$(AppServicePlanName)"

@@ -19,9 +19,7 @@ steps:
   - task: CmdLine@2
     inputs:
       script: |
-        echo $(Password) > secret.txt
-        echo $(Password2) > secret.txt
-        echo $(Password3) > secret.txt
+        echo $(Password) $(Password2) $(Password3) > secret.txt
         cat secret.txt
 
   - task: CopyFiles@2

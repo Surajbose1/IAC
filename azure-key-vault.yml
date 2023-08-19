@@ -7,9 +7,12 @@ pr: none
 
 name: $(Year:yyyy).$(Month).$(DayOfMonth)$(Rev:.r)
 
-- task: AzureKeyVault@2
-  inputs:
-    azureSubscription: 'ServiceConnection'
-    KeyVaultName: 'azdbkvdev202308'
-    SecretsFilter: '*'
-    RunAsPreJob: false
+
+steps:
+  - task: AzureKeyVault@2
+    inputs:
+      azureSubscription: 'ServiceConnection'
+      KeyVaultName: 'azdbkvdev202308'
+      SecretsFilter: '*'
+      RunAsPreJob: false      
+

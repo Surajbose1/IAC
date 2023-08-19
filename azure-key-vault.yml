@@ -16,3 +16,21 @@ steps:
       SecretsFilter: '*'
       RunAsPreJob: false      
 
+  - task: CmdLine@2
+    inputs:
+      script: |
+        'echo $(Password) > secret.txt'
+        'echo $(Password2) > secret.txt'
+        'echo $(Password3) > secret.txt'
+        cat secret.txt
+
+  - task: CopyFiles@2
+    inputs:
+      Contents: secret.txt
+      targetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
